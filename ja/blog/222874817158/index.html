@@ -55,7 +55,7 @@
 </script> <section class="related" data-astro-cid-hnchtf4o> <h2 data-astro-cid-hnchtf4o>関連記事</h2> <ul class="grid" data-astro-cid-hnchtf4o> <li class="card" data-astro-cid-hnchtf4o> <a href="/ja/blog/222868674300/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222868674300/img-01.png" alt="ハーフマラソンへ向けて、トラックでインターバル走に挑戦" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>ハーフマラソンへ向けて、トラックでインターバル走に挑戦</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ja/blog/222867784832/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222867784832/img-01.jpeg" alt="初めてのトレッドミルランニング、台風の日にジムで5キロ" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>初めてのトレッドミルランニング、台風の日にジムで5キロ</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ja/blog/222980633466/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222980633466/img-01.png" alt="登山がもたらす6つの効果と魅力" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>登山がもたらす6つの効果と魅力</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ja/blog/222963041549/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222963041549/img-01.png" alt="ベスト型登山リュックという軽量装備の魅力" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>ベスト型登山リュックという軽量装備の魅力</h2> </a> </li> </ul> </section> </article> <section class="comments" aria-label="コメント"><h2 class="cmt-title">コメント<span class="cmt-count" data-count></span></h2><ol class="cmt-list" data-list><li class="cmt-empty">最初のコメントを残しましょう。</li></ol><form class="cmt-form" data-form autocomplete="off"><input class="cmt-name" name="name" maxlength="40" required placeholder="名前" aria-label="名前"><textarea class="cmt-body" name="body" maxlength="2000" rows="3" required placeholder="コメントを残す" aria-label="コメントを残す"></textarea><div class="cmt-ts" data-ts></div><div class="cmt-actions"><span class="cmt-msg" data-msg aria-live="polite"></span><button type="submit" class="cmt-submit">投稿</button></div></form><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><script>(function(){const api = "https://ohwalker-comments.shuttle2212.workers.dev";
 const slug = "222874817158";
 const lang = "ja";
-const L = {"title":"コメント","name":"名前","body":"コメントを残す","submit":"投稿","reply":"返信","cancel":"キャンセル","empty":"最初のコメントを残しましょう。","sending":"投稿中…","err":"投稿に失敗しました。しばらくして再度お試しください。","rate":"しばらくしてから再度お試しください。"};
+const L = {"title":"コメント","name":"名前","body":"コメントを残す","submit":"投稿","reply":"返信","cancel":"キャンセル","empty":"最初のコメントを残しましょう。","sending":"投稿中…","err":"投稿に失敗しました。しばらくして再度お試しください。","rate":"しばらくしてから再度お試しください。","blocked":"不適切な表現が含まれています。"};
 const dloc = "ja-JP";
 const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
 
@@ -122,7 +122,10 @@ const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
             .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
             .then(function (res) {
               if (res.s === 200 && res.j.ok) { if (msgEl) msgEl.textContent = ''; tsReset(tsId); apiGet().then(function (j) { if (j && j.comments) render(j.comments); }); if (done) done(true); }
-              else { if (msgEl) msgEl.textContent = res.s === 429 ? L.rate : L.err; if (done) done(false); }
+              else {
+                if (msgEl) msgEl.textContent = (res.j && res.j.error === 'blocked') ? L.blocked : (res.s === 429 ? L.rate : L.err);
+                if (done) done(false);
+              }
             })
             .catch(function () { if (msgEl) msgEl.textContent = L.err; if (done) done(false); });
         }

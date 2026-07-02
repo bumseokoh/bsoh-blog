@@ -69,7 +69,7 @@
 </script> <section class="related" data-astro-cid-hnchtf4o> <h2 data-astro-cid-hnchtf4o>관련 글</h2> <ul class="grid" data-astro-cid-hnchtf4o> <li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/222867787360/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222867787360/img-01.png" alt="철원 DMZ 마라톤 공식기록" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>러닝</div> <h2 data-astro-cid-hnchtf4o>철원 DMZ 마라톤 공식기록</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/223269827318/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/223269827318/img-01.jpeg" alt="마라톤 대회용 러닝화 나이키 알파플라이2 구매" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>러닝</div> <h2 data-astro-cid-hnchtf4o>마라톤 대회용 러닝화 나이키 알파플라이2 구매</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/223145303727/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/223145303727/img-01.png" alt="철원DMZ 국제평화마라톤 half코스 신청완료" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>러닝</div> <h2 data-astro-cid-hnchtf4o>철원DMZ 국제평화마라톤 half코스 신청완료</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/222883310588/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222883310588/img-01.png" alt="10k 6:00 페이스 성공" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>러닝</div> <h2 data-astro-cid-hnchtf4o>10k 6:00 페이스 성공</h2> </a> </li> </ul> </section> </article> <section class="comments" aria-label="댓글"><h2 class="cmt-title">댓글<span class="cmt-count" data-count></span></h2><ol class="cmt-list" data-list><li class="cmt-empty">첫 댓글을 남겨보세요.</li></ol><form class="cmt-form" data-form autocomplete="off"><input class="cmt-name" name="name" maxlength="40" required placeholder="이름" aria-label="이름"><textarea class="cmt-body" name="body" maxlength="2000" rows="3" required placeholder="댓글을 남겨보세요" aria-label="댓글을 남겨보세요"></textarea><div class="cmt-ts" data-ts></div><div class="cmt-actions"><span class="cmt-msg" data-msg aria-live="polite"></span><button type="submit" class="cmt-submit">등록</button></div></form><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><script>(function(){const api = "https://ohwalker-comments.shuttle2212.workers.dev";
 const slug = "222867226807";
 const lang = "ko";
-const L = {"title":"댓글","name":"이름","body":"댓글을 남겨보세요","submit":"등록","reply":"답글","cancel":"취소","empty":"첫 댓글을 남겨보세요.","sending":"등록 중…","err":"등록에 실패했습니다. 잠시 후 다시 시도해주세요.","rate":"잠시 후 다시 시도해주세요."};
+const L = {"title":"댓글","name":"이름","body":"댓글을 남겨보세요","submit":"등록","reply":"답글","cancel":"취소","empty":"첫 댓글을 남겨보세요.","sending":"등록 중…","err":"등록에 실패했습니다. 잠시 후 다시 시도해주세요.","rate":"잠시 후 다시 시도해주세요.","blocked":"부적절한 표현이 포함되어 있습니다."};
 const dloc = "ko-KR";
 const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
 
@@ -136,7 +136,10 @@ const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
             .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
             .then(function (res) {
               if (res.s === 200 && res.j.ok) { if (msgEl) msgEl.textContent = ''; tsReset(tsId); apiGet().then(function (j) { if (j && j.comments) render(j.comments); }); if (done) done(true); }
-              else { if (msgEl) msgEl.textContent = res.s === 429 ? L.rate : L.err; if (done) done(false); }
+              else {
+                if (msgEl) msgEl.textContent = (res.j && res.j.error === 'blocked') ? L.blocked : (res.s === 429 ? L.rate : L.err);
+                if (done) done(false);
+              }
             })
             .catch(function () { if (msgEl) msgEl.textContent = L.err; if (done) done(false); });
         }

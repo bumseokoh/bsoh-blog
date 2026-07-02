@@ -79,7 +79,7 @@
 </script> <section class="related" data-astro-cid-hnchtf4o> <h2 data-astro-cid-hnchtf4o>관련 글</h2> <ul class="grid" data-astro-cid-hnchtf4o> <li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/224312833936/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/224312833936/img-01.jpeg" alt="샥즈 오픈런 프로2 골전도 이어폰 후기 운동용 자전거출퇴근 한달사용기 단점 장단점" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>장비</div> <h2 data-astro-cid-hnchtf4o>샥즈 오픈런 프로2 골전도 이어폰 후기 운동용 자전거출퇴근 한달사용기 단점 장단점</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/224025834274/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/224025834274/img-01.jpeg" alt="굿바이 애플워치 울트라 운동용 스마트 워치 오래가는 배터리 가민엔듀로3" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>장비</div> <h2 data-astro-cid-hnchtf4o>굿바이 애플워치 울트라 운동용 스마트 워치 오래가는 배터리 가민엔듀로3</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/223479054558/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/223479054558/img-01.jpeg" alt="브롬톤P라인 mks 실반 스트림 페달 교체" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>장비</div> <h2 data-astro-cid-hnchtf4o>브롬톤P라인 mks 실반 스트림 페달 교체</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/ko/blog/223474694776/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/223474694776/img-01.jpg" alt="mks 실반 스트림 페달 브롬톤 미니벨로 페달 구입" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>장비</div> <h2 data-astro-cid-hnchtf4o>mks 실반 스트림 페달 브롬톤 미니벨로 페달 구입</h2> </a> </li> </ul> </section> </article> <section class="comments" aria-label="댓글"><h2 class="cmt-title">댓글<span class="cmt-count" data-count></span></h2><ol class="cmt-list" data-list><li class="cmt-empty">첫 댓글을 남겨보세요.</li></ol><form class="cmt-form" data-form autocomplete="off"><input class="cmt-name" name="name" maxlength="40" required placeholder="이름" aria-label="이름"><textarea class="cmt-body" name="body" maxlength="2000" rows="3" required placeholder="댓글을 남겨보세요" aria-label="댓글을 남겨보세요"></textarea><div class="cmt-ts" data-ts></div><div class="cmt-actions"><span class="cmt-msg" data-msg aria-live="polite"></span><button type="submit" class="cmt-submit">등록</button></div></form><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><script>(function(){const api = "https://ohwalker-comments.shuttle2212.workers.dev";
 const slug = "222969604541";
 const lang = "ko";
-const L = {"title":"댓글","name":"이름","body":"댓글을 남겨보세요","submit":"등록","reply":"답글","cancel":"취소","empty":"첫 댓글을 남겨보세요.","sending":"등록 중…","err":"등록에 실패했습니다. 잠시 후 다시 시도해주세요.","rate":"잠시 후 다시 시도해주세요."};
+const L = {"title":"댓글","name":"이름","body":"댓글을 남겨보세요","submit":"등록","reply":"답글","cancel":"취소","empty":"첫 댓글을 남겨보세요.","sending":"등록 중…","err":"등록에 실패했습니다. 잠시 후 다시 시도해주세요.","rate":"잠시 후 다시 시도해주세요.","blocked":"부적절한 표현이 포함되어 있습니다."};
 const dloc = "ko-KR";
 const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
 
@@ -146,7 +146,10 @@ const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
             .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
             .then(function (res) {
               if (res.s === 200 && res.j.ok) { if (msgEl) msgEl.textContent = ''; tsReset(tsId); apiGet().then(function (j) { if (j && j.comments) render(j.comments); }); if (done) done(true); }
-              else { if (msgEl) msgEl.textContent = res.s === 429 ? L.rate : L.err; if (done) done(false); }
+              else {
+                if (msgEl) msgEl.textContent = (res.j && res.j.error === 'blocked') ? L.blocked : (res.s === 429 ? L.rate : L.err);
+                if (done) done(false);
+              }
             })
             .catch(function () { if (msgEl) msgEl.textContent = L.err; if (done) done(false); });
         }

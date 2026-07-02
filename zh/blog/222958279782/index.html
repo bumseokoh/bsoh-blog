@@ -71,7 +71,7 @@
 </script> <section class="related" data-astro-cid-hnchtf4o> <h2 data-astro-cid-hnchtf4o>相关文章</h2> <ul class="grid" data-astro-cid-hnchtf4o> <li class="card" data-astro-cid-hnchtf4o> <a href="/zh/blog/222868136148/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222868136148/img-01.png" alt="公路车用不用锁踏？亲历脱鞋摔车后的真心话" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>公路车用不用锁踏？亲历脱鞋摔车后的真心话</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/zh/blog/222883314702/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222883314702/img-01.png" alt="公路车碳纤维轮组无内胎（tubeless）改装初体验记录" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>公路车碳纤维轮组无内胎（tubeless）改装初体验记录</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/zh/blog/222896607598/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/222896607598/img-01.png" alt="深秋汉江夜骑：Emonda SL7 与 Brompton P Line 的骑行小记" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>骑行</div> <h2 data-astro-cid-hnchtf4o>深秋汉江夜骑：Emonda SL7 与 Brompton P Line 的骑行小记</h2> </a> </li><li class="card" data-astro-cid-hnchtf4o> <a href="/zh/blog/223387936141/" data-astro-cid-hnchtf4o> <img class="thumb" src="/images/223387936141/img-01.jpg" alt="45岁大叔的清晨空腹私教：下肢训练两台器械实录" loading="lazy" data-astro-cid-hnchtf4o> <div class="meta" data-astro-cid-hnchtf4o>日常</div> <h2 data-astro-cid-hnchtf4o>45岁大叔的清晨空腹私教：下肢训练两台器械实录</h2> </a> </li> </ul> </section> </article> <section class="comments" aria-label="评论"><h2 class="cmt-title">评论<span class="cmt-count" data-count></span></h2><ol class="cmt-list" data-list><li class="cmt-empty">来发表第一条评论吧。</li></ol><form class="cmt-form" data-form autocomplete="off"><input class="cmt-name" name="name" maxlength="40" required placeholder="昵称" aria-label="昵称"><textarea class="cmt-body" name="body" maxlength="2000" rows="3" required placeholder="留下评论" aria-label="留下评论"></textarea><div class="cmt-ts" data-ts></div><div class="cmt-actions"><span class="cmt-msg" data-msg aria-live="polite"></span><button type="submit" class="cmt-submit">发表</button></div></form><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><script>(function(){const api = "https://ohwalker-comments.shuttle2212.workers.dev";
 const slug = "222958279782";
 const lang = "zh";
-const L = {"title":"评论","name":"昵称","body":"留下评论","submit":"发表","reply":"回复","cancel":"取消","empty":"来发表第一条评论吧。","sending":"发表中…","err":"发表失败，请稍后再试。","rate":"请求过于频繁，请稍候再试。"};
+const L = {"title":"评论","name":"昵称","body":"留下评论","submit":"发表","reply":"回复","cancel":"取消","empty":"来发表第一条评论吧。","sending":"发表中…","err":"发表失败，请稍后再试。","rate":"请求过于频繁，请稍候再试。","blocked":"评论包含不当用语。"};
 const dloc = "zh-CN";
 const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
 
@@ -138,7 +138,10 @@ const sitekey = "0x4AAAAAADuN0u1cSCL1v56X";
             .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
             .then(function (res) {
               if (res.s === 200 && res.j.ok) { if (msgEl) msgEl.textContent = ''; tsReset(tsId); apiGet().then(function (j) { if (j && j.comments) render(j.comments); }); if (done) done(true); }
-              else { if (msgEl) msgEl.textContent = res.s === 429 ? L.rate : L.err; if (done) done(false); }
+              else {
+                if (msgEl) msgEl.textContent = (res.j && res.j.error === 'blocked') ? L.blocked : (res.s === 429 ? L.rate : L.err);
+                if (done) done(false);
+              }
             })
             .catch(function () { if (msgEl) msgEl.textContent = L.err; if (done) done(false); });
         }
