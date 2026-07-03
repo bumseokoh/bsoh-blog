@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="de"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Korea Wanderkarte · ohwalker.com</title><meta name="description" content="Wähle einen Berg auf der Karte für Routen, Schwierigkeit und Dauer."><link rel="canonical" href="https://ohwalker.com/de/hike-map/"><meta property="og:title" content="Korea Wanderkarte · ohwalker.com"><meta property="og:description" content="Wähle einen Berg auf der Karte für Routen, Schwierigkeit und Dauer."><meta property="og:type" content="website"><meta property="og:url" content="https://ohwalker.com/de/hike-map/"><meta name="twitter:card" content="summary_large_image"><link rel="alternate" type="application/rss+xml" title="ohwalker.com" href="/rss-de.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ohwalker.com","url":"https://ohwalker.com/","inLanguage":"de","author":{"@type":"Person","name":"ohwalker.com","sameAs":["https://www.instagram.com/walker.oh"]}}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3960027322547913" crossorigin="anonymous"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-K5P7D5CKSL"></script><script>(function(){const gaId = "G-K5P7D5CKSL";
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaId);
+    })();</script><style>.lead[data-astro-cid-zm7m4oic]{color:var(--muted)}.cnt[data-astro-cid-zm7m4oic]{font-weight:700;color:var(--accent)}.allmap[data-astro-cid-zm7m4oic]{height:72vh;min-height:420px;width:100%;border-radius:12px;border:1px solid var(--line);z-index:0}
+</style>
+<link rel="stylesheet" href="/_astro/about.qVLo6QyU.css"></head> <body> <header class="site-header"> <div class="bar"> <a class="brand" href="/de/">ohwalker.com</a> <div class="langs" aria-label="언어 선택"> <span class="globe" aria-hidden="true">🌐</span> <a href="/ko/" class title="한국어" hreflang="ko">KO</a><a href="/en/" class title="English" hreflang="en">EN</a><a href="/ja/" class title="日本語" hreflang="ja">JA</a><a href="/es/" class title="Español" hreflang="es">ES</a><a href="/de/" class="on" title="Deutsch" hreflang="de">DE</a><a href="/zh/" class title="中文" hreflang="zh">ZH</a> </div> </div> <nav class="cats"> <a href="/de/category/cycling/">Radfahren</a><a href="/de/category/running/">Laufen</a><a href="/de/category/hiking/">Wandern</a><a href="/de/category/camping/">Camping</a><a href="/de/category/travel/">Reisen</a><a href="/de/category/car/">Autos</a><a href="/de/category/gear/">Ausrüstung</a><a href="/de/category/daily/">Alltag</a> </nav> </header> <main> <h1 data-astro-cid-zm7m4oic>Korea Wanderkarte</h1> <p class="lead" data-astro-cid-zm7m4oic>Wähle einen Berg auf der Karte für Routen, Schwierigkeit und Dauer. <span class="cnt" data-astro-cid-zm7m4oic>(1)</span></p> <div id="hikeallmap" class="allmap" data-astro-cid-zm7m4oic></div> <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""> <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> <script>(function(){const markers = [{"lat":37.43787087788792,"lng":126.97342151699695,"title":"Gwanaksan Wanderung: Der felsige Stadtberg bei Seoul","href":"/de/blog/hiking-116200201/"}];
+
+    (function () {
+      function init() {
+        if (typeof L === 'undefined') { setTimeout(init, 200); return; }
+        var el = document.getElementById('hikeallmap');
+        if (!el || el.dataset.done) return;
+        el.dataset.done = '1';
+        var map = L.map('hikeallmap');
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; OpenStreetMap' }).addTo(map);
+        map.setView([36.3, 127.8], 7);
+        markers.forEach(function (m) {
+          L.marker([m.lat, m.lng]).addTo(map)
+            .bindPopup('<a href="' + m.href + '"><b>' + m.title + '</b></a>');
+        });
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+      else init();
+    })();
+  })();</script>  </main> <footer class="site-footer"> <div class="f-brand">ohwalker.com</div> <p class="f-tag">Notizen übers Lesen, Radeln, Reisen und Schrauben</p> <div class="f-social" aria-label="Folgen"> <a href="/de/about/">Über mich</a> <a href="/de/privacy/">Datenschutzerklärung</a> <a href="https://www.instagram.com/walker.oh" target="_blank" rel="me noopener">Instagram</a>  <a href="mailto:bumseok.view@gmail.com" class="f-mail">Email</a> </div> <p class="f-copy">© ohwalker.com</p> </footer>  </body> </html>
