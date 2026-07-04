@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /insta/
 
 Sitemap: https://ohwalker.com/sitemap-index.xml
