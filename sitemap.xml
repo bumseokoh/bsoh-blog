@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 관례 경로 별칭. index가 index를 가리키면 규격 위반이라 실제 urlset(sitemap-0.xml)을 직접 가리킨다.
+     @astrojs/sitemap이 sitemap-1.xml 이상을 만들기 시작하면(글 45,000+) 여기에 항목 추가 필요. -->
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://ohwalker.com/sitemap-index.xml</loc>
+    <loc>https://ohwalker.com/sitemap-0.xml</loc>
   </sitemap>
 </sitemapindex>
